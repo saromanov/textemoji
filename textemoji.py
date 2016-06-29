@@ -12,6 +12,7 @@ class TextEmoji:
 		length is a default length for empoji result
 		'''
 		self.length = length
+		self._emojiList = self._read_emoji()
 
 	def _pre_processing(self, text):
 		tokenized = word_tokenize(text)
@@ -19,10 +20,12 @@ class TextEmoji:
 		tagged = pos_tag(tokenized)
 		return tagged
 
-	def read_emoji(self, path='list.txt'):
+	def _read_emoji(self, path='list.txt'):
 		''' 
 			reading list of emoji
 		'''
+
+		lines = [line.rstrip('\n') for line in open('filename')]
 		pass
 
 	def word2vec_processing(self, corpora='treebank'):
