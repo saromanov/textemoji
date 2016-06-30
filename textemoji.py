@@ -54,8 +54,6 @@ class TextEmoji:
 		all_words.extend(common)
 		for comm in common:
 			all_words.append(self._word2vec_fit(comm))
-		#print(self.nltk_similar(tea))
-		#print(self._word2vec_fit('tea'))
 		random.shuffle(all_words)
 		# find any words on emoji list
 		print(text)
