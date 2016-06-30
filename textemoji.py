@@ -25,12 +25,14 @@ class TextEmoji:
 			reading list of emoji
 		'''
 
-		return [line.rstrip('\n') for line in open('filename')]
+		return [line.rstrip('\n') for line in open(path)]
 
 	def word2vec_processing(self, corpora='treebank'):
 		self.t = Word2Vec(movie_reviews.sents())
 
 	def _word2vec_fit(self, word):
+		''' classification with word2vec. Experimental
+		'''
 		try:
 			print(self.t)
 			if self.t is not None:
