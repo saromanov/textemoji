@@ -25,8 +25,7 @@ class TextEmoji:
 			reading list of emoji
 		'''
 
-		lines = [line.rstrip('\n') for line in open('filename')]
-		pass
+		return [line.rstrip('\n') for line in open('filename')]
 
 	def word2vec_processing(self, corpora='treebank'):
 		self.t = Word2Vec(movie_reviews.sents())
