@@ -1,4 +1,5 @@
 import emoji
+import random
 from gensim.models import Word2Vec
 from nltk import sent_tokenize, word_tokenize, pos_tag, ne_chunk, Text
 from nltk.corpus import brown, movie_reviews, treebank, stopwords
@@ -36,9 +37,9 @@ class TextEmoji:
 		try:
 			print(self.t)
 			if self.t is not None:
-				return self.t.most_similar(word, topn=5)
+				return self.t.most_similar(word, topn=5)[0][0]
 		except Exception:
-			return []
+			return ''
 
 	def nltk_similar(self, word):
 		text = Text(word.lower() for word in brown.words())
@@ -47,8 +48,15 @@ class TextEmoji:
 	def text_emoji(self, text):
 		tags = self._pre_processing(text)
 		words = [word for (word, tag) in tags]
-		common = [key for key, value in Counter(words).most_common() if len(key) > 3 and value > 1]
-		print(self._emoji_list)
+		counter = Counter(words).most_common()
+		common = [key for key, value in counter if len(key) > 3 and value > 1]
+		all_words = []
+		all_words.extend(common)
+		for comm in common:
+			all_words.append(self._word2vec_fit(comm))
 		#print(self.nltk_similar(tea))
 		#print(self._word2vec_fit('tea'))
-		print(tags)
+		random.shuffle(all_words)
+		# find any words on emoji list
+		print(text)
+		print(emoji.emojize(' '.join([':'+item+':' for item in set(self._emoji_list).intersection(all_words)])))
