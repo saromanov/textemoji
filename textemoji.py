@@ -47,7 +47,7 @@ class TextEmoji:
 	def text_emoji(self, text):
 		tags = self._pre_processing(text)
 		words = [word for (word, tag) in tags]
-		print(Counter(words))
+		common = [key for key, value in Counter(words).most_common() if len(key) > 3 and value > 1]
 		#print(self.nltk_similar(tea))
 		#print(self._word2vec_fit('tea'))
 		print(tags)
