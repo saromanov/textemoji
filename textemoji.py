@@ -12,7 +12,7 @@ class TextEmoji:
 		length is a default length for empoji result
 		'''
 		self.length = length
-		self._emojiList = self._read_emoji()
+		self._emoji_list = self._read_emoji()
 
 	def _pre_processing(self, text):
 		tokenized = word_tokenize(text)
@@ -48,6 +48,7 @@ class TextEmoji:
 		tags = self._pre_processing(text)
 		words = [word for (word, tag) in tags]
 		common = [key for key, value in Counter(words).most_common() if len(key) > 3 and value > 1]
+		print(self._emoji_list)
 		#print(self.nltk_similar(tea))
 		#print(self._word2vec_fit('tea'))
 		print(tags)
