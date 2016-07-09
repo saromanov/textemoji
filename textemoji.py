@@ -29,7 +29,9 @@ class TextEmoji:
 		return [line.rstrip('\n') for line in open(path)]
 
 	def word2vec_processing(self, corpora='treebank'):
+		print("Start word2vec training...")
 		self.t = Word2Vec(movie_reviews.sents())
+		print("Word2vec training is finished")
 
 	def _word2vec_fit(self, word):
 		''' classification with word2vec. Experimental
