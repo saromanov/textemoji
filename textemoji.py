@@ -59,4 +59,6 @@ class TextEmoji:
 		random.shuffle(all_words)
 		# find any words on emoji list
 		print(text)
-		print(emoji.emojize(' '.join([':'+item+':' for item in set(self._emoji_list).intersection(all_words)])))
+		result = emoji.emojize(' '.join([':'+item+':' for item in set(self._emoji_list).intersection(all_words)]))
+		print(result)
+		return result
